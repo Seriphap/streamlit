@@ -60,9 +60,9 @@ st.pydeck_chart(pdk.Deck(
 st.title('2. Use date input')
 # Date input widget for user interaction
 selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())
-Min_Date = data[DATE_COLUMN].min().dt.date
-Max_Date = data[DATE_COLUMN].max().dt.date
-st.print(f"Record Date from {Min_Date} to {Max_Date} ")
+Min_Date = data[DATE_COLUMN].min().date()
+Max_Date = data[DATE_COLUMN].max().date()
+st.write(f"Record Date from {Min_Date} to {Max_Date} ")
 
 # Convert the 'DATE_COLUMN' to a date format (ignore time part) and create a new column
 data['date_only'] = pd.to_datetime(data[DATE_COLUMN]).dt.date
