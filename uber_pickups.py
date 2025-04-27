@@ -32,7 +32,6 @@ data
 
 #1. Convert 2D mao to 3D map usind PyDeck
 st.title('1. Convert 2D map to 3D map usind PyDeck')
-
 st.subheader('3D Map of all pickups')
 # Ensure your data has 'lat' and 'lon' columns (or rename accordingly)
 st.pydeck_chart(pdk.Deck(
@@ -61,14 +60,11 @@ st.pydeck_chart(pdk.Deck(
 st.title('2. Use date input')
 # Date input widget for user interaction
 selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())
-
 # Convert the 'DATE_COLUMN' to a date format (ignore time part) and create a new column
 data['date_only'] = pd.to_datetime(data[DATE_COLUMN]).dt.date
-
 # Filter data based on selected date
 filtered_data = data[data['date_only'] == selected_date]
 filtered_data
-
 # Add subheader for 3D map
 st.subheader(f"3D Map of pickups on {selected_date}")
 # Ensure filtered data has latitude and longitude
