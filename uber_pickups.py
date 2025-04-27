@@ -90,7 +90,6 @@ st.bar_chart(hist_values)
 
 #4. Use plotly (any charts)
 st.title('4. Use plotly (any charts)')
-import plotly.express as px
 
 
 
