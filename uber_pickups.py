@@ -72,7 +72,7 @@ filtered_data = data[data['date_only'] == selected_date]
 st.map(filtered_data)
 
 #3. Use Selectbox
-st.title('#3. Use Selectbox')
+st.title('3. Use Selectbox')
 # Add a selectbox for date selection
 selected_date = st.selectbox(
     'Select a date',
