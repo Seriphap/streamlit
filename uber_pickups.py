@@ -1,7 +1,15 @@
+
+#1. Convert 2D mao to 3D map usind PyDeck
+#2. Use date input
+#3. Use Selectbox
+#4. Use plotly (any charts)
+#5. Click a button to increase the number in the following message, "This page has run 24 times"
+
 import streamlit as st
 import pandas as pd
 import numpy as np
 
+st.title('1. Convert 2D map to 3D map usind PyDeck')
 st.title('Uber pickups in NYC2')
 
 DATE_COLUMN = 'date/time'
