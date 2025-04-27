@@ -63,7 +63,7 @@ st.title('2. Use date input')
 selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())
 
 # Filter data based on selected date
-filtered_data = data[data[DATE_COLUMN] >= selected_date]
+filtered_data = data[data[DATE_COLUMN] == selected_date]
 filtered_data
 
 
