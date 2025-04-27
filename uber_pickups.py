@@ -69,7 +69,7 @@ data['date_only'] = pd.to_datetime(data[DATE_COLUMN]).dt.date
 # Filter data based on selected date
 filtered_data = data[data['date_only'] == selected_date]
 #filtered_data
-st.map(filtered_data)
+#st.map(filtered_data)
 st.subheader(f"3D Map of pickups on {selected_date}")
 if filtered_data.empty:
     st.warning(f"No data available for the selected date: {selected_date}")
