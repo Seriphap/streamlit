@@ -90,10 +90,8 @@ st.bar_chart(hist_values)
 
 
 #4. Use plotly (any charts)
+pip install plotly
 st.title('4. Use plotly (any charts)')
-
-# Assuming data is already loaded
-st.title('#3. Use Selectbox')
 # Add a selectbox for date selection
 selected_date = st.selectbox(
     'Select a date',
