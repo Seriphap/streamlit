@@ -9,7 +9,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title('1. Convert 2D map to 3D map usind PyDeck')
+
 st.title('Uber pickups in NYC2')
 
 DATE_COLUMN = 'date/time'
@@ -31,13 +31,8 @@ data = load_data(10000)
 data_load_state.text('Loading data...done!')
 data
 
-st.subheader('Number of pickups by hour')
-hist_values = np.histogram(
-    data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
-st.bar_chart(hist_values)
+st.title('1. Convert 2D map to 3D map usind PyDeck')
 
-st.subheader('Map of all pickups')
-st.map(data)
 
 # 3D 
 import streamlit as st
@@ -72,8 +67,6 @@ st.pydeck_chart(pdk.Deck(
 import streamlit as st
 import pydeck as pdk
 import pandas as pd
-
-
 # Date input widget for user interaction
 selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())
 print(selected_date)
@@ -103,8 +96,18 @@ if not filtered_data.empty:
                 elevation_range=[0, 1000],
                 pickable=True,
                 extruded=True,
+                     
             ),
         ],
     ))
 else:
     st.warning("No data available for the selected date.")
+
+
+st.subheader('Number of pickups by hour')
+hist_values = np.histogram(
+    data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+st.bar_chart(hist_values)
+
+st.subheader('Map of all pickups')
+st.map(data)
