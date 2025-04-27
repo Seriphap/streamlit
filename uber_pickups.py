@@ -66,32 +66,28 @@ data['date_only'] = pd.to_datetime(data[DATE_COLUMN]).dt.date
 filtered_data = data[data['date_only'] == selected_date]
 filtered_data
 # Add subheader for 3D map
-st.subheader(f"3D Map of pickups on {selected_date}")
-# Ensure filtered data has latitude and longitude
-if not filtered_data.empty:
-    st.pydeck_chart(pdk.Deck(
-        map_style='mapbox://styles/mapbox/light-v9',
-        initial_view_state=pdk.ViewState(
-            latitude=filtered_data['lat'].mean(),
-            longitude=filtered_data['lon'].mean(),
-            zoom=11,
-            pitch=50,
+st.pydeck_chart(pdk.Deck(
+    map_style='mapbox://styles/mapbox/light-v9',
+    initial_view_state=pdk.ViewState(
+        latitude=filtered_data['lat'].mean(),
+        longitude=filtered_data['lon'].mean(),
+        zoom=11,
+        pitch=50,
+    ),
+    layers=[
+        pdk.Layer(
+            'HexagonLayer',
+            data=filtered_data,
+            get_position='[lon, lat]',
+            radius=100,
+            elevation_scale=4,
+            elevation_range=[0, 1000],
+            pickable=True,
+            extruded=True,
         ),
-        layers=[
-            pdk.Layer(
-                "HexagonLayer",
-                data=filtered_data,
-                get_position='[lon, lat]',
-                radius=100,
-                elevation_scale=4,
-                elevation_range=[0, 1000],
-                pickable=True,
-                extruded=True,
-            ),
-        ],
-    ))
-else:
-    st.warning("No data available for the selected date.")
+    ],
+))
+
 
 
 #3. Use Selectbox
