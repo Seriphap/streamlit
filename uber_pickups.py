@@ -68,7 +68,7 @@ st.write(f"Record Date from {Min_Date} to {Max_Date} ")
 data['date_only'] = pd.to_datetime(data[DATE_COLUMN]).dt.date
 # Filter data based on selected date
 filtered_data = data[data['date_only'] == selected_date]
-#filtered_data
+filtered_data
 st.map(filtered_data)
 
 
