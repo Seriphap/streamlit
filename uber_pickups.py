@@ -8,10 +8,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
-
+import pydeck as pdk
 st.title('Uber pickups in NYC2')
-
 DATE_COLUMN = 'date/time'
 DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
          'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
@@ -31,15 +29,10 @@ data = load_data(10000)
 data_load_state.text('Loading data...done!')
 data
 
+#1. Convert 2D mao to 3D map usind PyDeck
 st.title('1. Convert 2D map to 3D map usind PyDeck')
 
-
-# 3D 
-import streamlit as st
-import pydeck as pdk
-
 st.subheader('3D Map of all pickups')
-
 # Ensure your data has 'lat' and 'lon' columns (or rename accordingly)
 st.pydeck_chart(pdk.Deck(
     map_style='mapbox://styles/mapbox/light-v9',
@@ -63,19 +56,15 @@ st.pydeck_chart(pdk.Deck(
     ],
 ))
 
-
-import streamlit as st
-import pydeck as pdk
-import pandas as pd
+#2. Use date input
+st.title('2. Use date input')
 # Date input widget for user interaction
 selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())
 print(selected_date)
 # Filter data based on selected date
 filtered_data = data[data[DATE_COLUMN] == selected_date]
 print(filtered_data)
-
 st.subheader(f"3D Map of pickups on {selected_date}")
-
 # Ensure filtered data has latitude and longitude
 if not filtered_data.empty:
     st.pydeck_chart(pdk.Deck(
@@ -104,6 +93,8 @@ else:
     st.warning("No data available for the selected date.")
 
 
+#3. Use Selectbox
+st.title('#3. Use Selectbox')
 st.subheader('Number of pickups by hour')
 hist_values = np.histogram(
     data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
