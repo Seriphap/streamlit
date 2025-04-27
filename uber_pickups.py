@@ -9,7 +9,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
-import plotly.express as px
 
 st.title('Uber pickups in NYC2')
 DATE_COLUMN = 'date/time'
@@ -90,7 +89,8 @@ st.bar_chart(hist_values)
 
 
 #4. Use plotly (any charts)
-pip install plotly
+!pip install plotly
+import plotly.express as px
 st.title('4. Use plotly (any charts)')
 # Add a selectbox for date selection
 selected_date = st.selectbox(
