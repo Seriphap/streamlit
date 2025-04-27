@@ -92,23 +92,7 @@ st.bar_chart(hist_values)
 st.title('4. Use plotly (any charts)')
 import plotly.express as px
 
-# Filter the data based on the selected date
-filtered_data = data[data[DATE_COLUMN].dt.date == selected_date]
-st.subheader(f'Number of pickups by hour on {selected_date}')
-hist_values, bin_edges = np.histogram(filtered_data[DATE_COLUMN].dt.hour, bins=24, range=(0, 24))
-hist_df = pd.DataFrame({
-    "Hour": bin_edges[:-1],  # Exclude the last edge
-    "Pickups": hist_values
-})
 
-# Create interactive bar chart with Plotly
-fig = px.bar(hist_df, x="Hour", y="Pickups",
-             title=f'Number of pickups by hour on {selected_date}',
-             labels={"Hour": "Hour of the Day", "Pickups": "Number of Pickups"},
-             color="Pickups", color_continuous_scale="Viridis")
-
-# Display the Plotly chart in Streamlit
-st.plotly_chart(fig)
 
 #5. Click a button to increase the number in the following message, "This page has run 24 times"
 import streamlit as st
