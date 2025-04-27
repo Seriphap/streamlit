@@ -64,7 +64,7 @@ selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())
 data['date_only'] = pd.to_datetime(data[DATE_COLUMN]).dt.date
 # Filter data based on selected date
 filtered_data = data[data['date_only'] == selected_date]
-filtered_data
+#filtered_data
 st.map(filtered_data)
 
 
