@@ -90,7 +90,7 @@ st.bar_chart(hist_values)
 
 #4. Use plotly (any charts)
 st.title('4. Use plotly (any charts)')
-
+import plotly.express as px
 
 
 #5. Click a button to increase the number in the following message, "This page has run 24 times"
