@@ -84,8 +84,52 @@ filtered_data = data[data[DATE_COLUMN].dt.date == selected_date]
 # Display subheader and calculate histogram values
 st.subheader(f'Number of pickups by hour on {selected_date}')
 hist_values = np.histogram(filtered_data[DATE_COLUMN].dt.hour, bins=24, range=(0, 24))[0]
-
 # Display the bar chart
 st.bar_chart(hist_values)
+
+
+#4. Use plotly (any charts)
+st.title('4. Use plotly (any charts)')
+import plotly.express as px
+
+# Assuming data is already loaded
+st.title('#3. Use Selectbox')
+# Add a selectbox for date selection
+selected_date = st.selectbox(
+    'Select a date',
+    options=data[DATE_COLUMN].dt.date.unique(),
+    format_func=lambda date: date.strftime('%Y-%m-%d')  # Format the dates for display
+)
+
+# Filter the data based on the selected date
+filtered_data = data[data[DATE_COLUMN].dt.date == selected_date]
+
+# Display subheader
+st.subheader(f'Number of pickups by hour on {selected_date}')
+
+# Calculate histogram values for hours (bins = 24, range from 0 to 24 hours)
+hist_values = np.histogram(filtered_data[DATE_COLUMN].dt.hour, bins=24, range=(0, 24))[0]
+
+# Create a DataFrame for Plotly Express
+hourly_data = pd.DataFrame({
+    'Hour': np.arange(24),  # Hours 0-23
+    'Pickups': hist_values
+})
+
+# Create a bar chart using Plotly Express
+fig = px.bar(hourly_data, x='Hour', y='Pickups',
+             labels={'Hour': 'Hour of Day', 'Pickups': 'Number of Pickups'},
+             title=f'Number of Uber Pickups by Hour on {selected_date}')
+
+# Customize layout (optional)
+fig.update_layout(
+    xaxis_title='Hour of Day',
+    yaxis_title='Number of Pickups',
+    plot_bgcolor='rgba(0,0,0,0)',  # Transparent background
+    paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
+)
+
+# Display the plotly chart in Streamlit
+st.plotly_chart(fig)
 
 
