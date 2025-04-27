@@ -100,17 +100,6 @@ import pydeck as pdk
 # Display title in Streamlit
 st.title('2. Use Date Input')
 
-# Load the data (ensure the CSV file exists and has the required columns)
-DATA_FILE = "data.csv"  # Adjust the filename as needed
-DATE_COLUMN = "date"  # Replace with your actual date column name
-
-try:
-    data = pd.read_csv(DATA_FILE)  # Load your data
-    data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])  # Convert to datetime if necessary
-except Exception as e:
-    st.error(f"Error loading data: {e}")
-    st.stop()
-
 # Date input widget for user interaction
 selected_date = st.date_input("Select a date", data[DATE_COLUMN].min())  # Default to the earliest date
 st.write(f"Selected date: {selected_date}")
