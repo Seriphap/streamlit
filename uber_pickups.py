@@ -94,6 +94,7 @@ st.title('4. Use plotly (any charts)')
 
 
 #5. Click a button to increase the number in the following message, "This page has run 24 times"
+st.title('5. Click a button to increase the number in the following message, "This page has run 24 times')
 import streamlit as st
 if "counter" not in st.session_state:
     st.session_state.counter = 0
