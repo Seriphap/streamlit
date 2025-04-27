@@ -73,8 +73,19 @@ st.map(filtered_data)
 
 #3. Use Selectbox
 st.title('#3. Use Selectbox')
-st.subheader('Number of pickups by hour')
-hist_values = np.histogram(
-    data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+# Add a selectbox for date selection
+selected_date = st.selectbox(
+    'Select a date',
+    options=data[DATE_COLUMN].dt.date.unique(),
+    format_func=lambda date: date.strftime('%Y-%m-%d')  # Format the dates for display
+)
+# Filter the data based on the selected date
+filtered_data = data[data[DATE_COLUMN].dt.date == selected_date]
+# Display subheader and calculate histogram values
+st.subheader(f'Number of pickups by hour on {selected_date}')
+hist_values = np.histogram(filtered_data[DATE_COLUMN].dt.hour, bins=24, range=(0, 24))[0]
+
+# Display the bar chart
 st.bar_chart(hist_values)
+
 
